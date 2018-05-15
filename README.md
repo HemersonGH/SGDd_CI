@@ -1,2 +1,2 @@
-# SGDd_CI
+# SGDs_CI
 Sistema Gerenciador utilizando CodeIgniter
