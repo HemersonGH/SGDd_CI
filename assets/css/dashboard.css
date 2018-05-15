@@ -50,11 +50,19 @@ h1 {
 .sidebar .nav-item + .nav-item {
   margin-left: 0;
 }
-
+/* .teste{
+  margin-left: auto;;
+  margin-right: auto;
+} */
 .sidebar .nav-link {
   border-radius: 0;
 }
-
+/*
+.ficanocanto {
+  width: 100%;
+  text-align: right;
+  background-color: red;
+} */
 /*
  * Dashboard
  */
