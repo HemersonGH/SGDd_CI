@@ -18,6 +18,7 @@ class Usuario extends CI_Controller {
 	* map to /index.php/welcome/<method_name>
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
+
 	public function index()
 	{
 		$this->load->view('includes/html_header');
@@ -25,4 +26,13 @@ class Usuario extends CI_Controller {
 		$this->load->view('listar_usuario');
 		$this->load->view('includes/html_footer');
 	}
+
+	public function cadastro()
+	{
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('cadastro_usuario');
+		$this->load->view('includes/html_footer');
+	}
+
 }
