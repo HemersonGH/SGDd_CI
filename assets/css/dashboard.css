@@ -1,6 +1,6 @@
 /*
- * Base structure
- */
+* Base structure
+*/
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
@@ -8,8 +8,8 @@ body {
 }
 
 /*
- * Typography
- */
+* Typography
+*/
 
 h1 {
   margin-bottom: 20px;
@@ -18,8 +18,8 @@ h1 {
 }
 
 /*
- * Sidebar
- */
+* Sidebar
+*/
 
 .sidebar {
   position: fixed;
@@ -51,23 +51,32 @@ h1 {
   margin-left: 0;
 }
 /* .teste{
-  margin-left: auto;;
-  margin-right: auto;
+margin-left: auto;;
+margin-right: auto;
 } */
 .sidebar .nav-link {
   border-radius: 0;
 }
 /*
 .ficanocanto {
-  width: 100%;
-  text-align: right;
-  background-color: red;
+width: 100%;
+text-align: right;
+background-color: red;
 } */
 /*
- * Dashboard
- */
+* Dashboard
+*/
 
- /* Placeholders */
+.position {
+  /* left: 80%; */
+  /* text-align: right; */
+  left: 0px; /* posiciona a 90px para a esquerda */
+	top: -72px;
+  float:right;
+  /* background-color: red; */
+}
+
+/* Placeholders */
 .placeholders {
   padding-bottom: 3rem;
 }
