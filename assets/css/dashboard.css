@@ -68,12 +68,16 @@ background-color: red;
 */
 
 .position {
-  /* left: 80%; */
-  /* text-align: right; */
+  
+}
+
+.positiont {
+  left: 80%;
+  text-align: right;
   left: 0px; /* posiciona a 90px para a esquerda */
 	top: -72px;
   float:right;
-  /* background-color: red; */
+  background-color: red;
 }
 
 /* Placeholders */
