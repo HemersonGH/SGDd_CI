@@ -35,4 +35,17 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
+	public function cadastrar()
+	{
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+		$data[''] = $this->input->post('');
+	}
+
 }
