@@ -37,15 +37,17 @@ class Usuario extends CI_Controller {
 
 	public function cadastrar()
 	{
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
-		$data[''] = $this->input->post('');
+		$data['nome'] = $this->input->post('name');
+		$data['cpf'] = $this->input->post('cpf');
+		$data['email'] = $this->input->post('email');
+		$data['senha'] = md5($this->input->post('password'));
+		$data['status'] = $this->input->post('status');
+		$data['nivel'] = $this->input->post('nivel');
+		$data['endereco'] = $this->input->post('endereco');
+
+		if ($this->db->insert('usuario', $data)) {
+			redirect('usuario');
+		}
 	}
 
 }
