@@ -19,10 +19,19 @@ class Usuario extends CI_Controller {
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
 
-	public function index()
+	public function index($indice=null)
 	{
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+
+		if ($indice == 1) {
+			$data['msg'] = 	"Usuário cadastrado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+		} else if ($indice == 2) {
+			$data['msg'] = 	"Não foi possível cadastrar o usuário";
+			$this->load->view('includes/msg_erro', $data);
+		}
+
 		$this->load->view('listar_usuario');
 		$this->load->view('includes/html_footer');
 	}
@@ -46,7 +55,9 @@ class Usuario extends CI_Controller {
 		$data['endereco'] = $this->input->post('endereco');
 
 		if ($this->db->insert('usuario', $data)) {
-			redirect('usuario');
+			redirect('usuario/1');
+		} else {
+			redirect('usuario/2');
 		}
 	}
 
