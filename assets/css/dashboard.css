@@ -57,25 +57,12 @@ margin-right: auto;
 .sidebar .nav-link {
   border-radius: 0;
 }
-/*
-.ficanocanto {
-width: 100%;
-text-align: right;
-background-color: red;
-} */
-/*
-* Dashboard
-*/
-
-.position {
-  
-}
 
 .positiont {
   left: 80%;
   text-align: right;
   left: 0px; /* posiciona a 90px para a esquerda */
-	top: -72px;
+  top: -72px;
   float:right;
   background-color: red;
 }
@@ -89,3 +76,20 @@ background-color: red;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+
+/*
+.ficanocanto {
+width: 100%;
+text-align: right;
+background-color: red;
+} */
+/*
+* Dashboard
+*/
+
+/* .position {
+} */
+
+/* .aligna {
+  text-align: center;
+} */

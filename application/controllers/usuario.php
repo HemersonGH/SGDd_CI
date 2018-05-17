@@ -21,6 +21,9 @@ class Usuario extends CI_Controller {
 
 	public function index($indice=null)
 	{
+		$this->db->select('*');
+		$dados['usuarios'] = $this->db->get('usuario')->result();
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
@@ -32,7 +35,7 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_erro', $data);
 		}
 
-		$this->load->view('listar_usuario');
+		$this->load->view('listar_usuario', $dados);
 		$this->load->view('includes/html_footer');
 	}
 
