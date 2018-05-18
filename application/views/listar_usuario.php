@@ -21,8 +21,8 @@
         <th> Email </th>
         <th> Nível </th>
         <th> Status </th>
-        <th> Atualizar </th>
-        <th> Remover </th>
+        <th> </th>
+        <th> </th>
       </tr>
       <?php foreach ($usuarios as $user) { ?>
         <tr>
@@ -31,12 +31,15 @@
           <td> <?= $user->email; ?> </td>
           <td> <?= $user->nivel==1?'Administrador':'Usuário'; ?> </td>
           <td> <?= $user->status==1?'Ativo':'Inativo'; ?> </td>
-          <td> <a href="<?= base_url('usuario/atualizar/'.$user->idUsuario); ?>" class="btn btn-primary"> Atualizar </td>
-          <td> <a href="<?= base_url('usuario/excluir/'.$user->idUsuario); ?>" class="btn btn-danger"> Remover</td>
-        </tr>
-      <?php } ?>
-    </table>
-  </div>
+          <td>
+            <a href="<?= base_url('usuario/atualizar/'.$user->idUsuario); ?>" class="btn btn-primary btn-group mr-2"> Atualizar
+              <a href="<?= base_url('usuario/excluir/'.$user->idUsuario); ?>" class="btn btn-danger btn-group mr-0"
+                onclick="return confirm('Deseja realmente remover esse usuário?'); "> Remover
+              </td>
+            </tr>
+          <?php } ?>
+        </table>
+      </div>
 
 
     </main>
