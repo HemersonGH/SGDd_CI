@@ -13,7 +13,7 @@
     <form class="form-control" action="<?= base_url(); ?>usuario/cadastrar" method="post">
       <div class="form-group">
         <label for="name">Nome:</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="namelHelp" placeholder="Informe o nome..." value="<?= $usuario[0]->nome ?>" required>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="namelHelp" value="<?= $usuario[0]->nome ?>" required>
         <!-- <small id="namelHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
 
@@ -21,20 +21,20 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="cpf">CPF:</label>
-            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Informe o CPF..." value="<?= $usuario[0]->nome ?>" required>
+            <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $usuario[0]->nome ?>" required>
           </div>
         </div>
         <div class="col-md-7">
           <label for="endereco">Endereço:</label>
-          <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Informe o endereço..." value="<?= $usuario[0]->endereco ?>" required>
+          <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $usuario[0]->endereco ?>" required>
         </div>
         <div class="col-md-2">
           <div class="form-group">
             <label for="nivel">Nível:</label>
             <select id="nivel" name="nivel" class="form-control" value="<?= $usuario[0]->nivel ?>" required>
               <option value="0"> ----- </option>
-              <option value="1"> Administrador </option>
-              <option value="2"> Usuário </option>
+              <option value="1" <?= $usuario[0]->nivel == 1? 'selected':''; ?> > Administrador </option>
+              <option value="2" <?= $usuario[0]->nivel == 2? 'selected':''; ?> > Usuário </option>
             </select>
           </div>
         </div>
@@ -44,13 +44,13 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Informe o email..." value="<?= $usuario[0]->email ?>" required>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email ?>" required>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Informe a senha..." value="<?= $usuario[0]->senha ?>" required>
+            <input type="password" class="form-control" id="password" name="password" value="<?= $usuario[0]->senha ?>" required>
           </div>
         </div>
         <div class="col-md-2">
@@ -58,8 +58,8 @@
             <label for="status">Status:</label>
             <select id="status" name="status" class="form-control" value="<?= $usuario[0]->status ?>" required>
               <option value="0"> ----- </option>
-              <option value="1"> Ativo </option>
-              <option value="2"> Inativo </option>
+              <option value="1" <?= $usuario[0]->nivel == 1? 'selected':''; ?>  > Ativo </option>
+              <option value="2" <?= $usuario[0]->nivel == 2? 'selected':''; ?>  > Inativo </option>
             </select>
           </div>
         </div>
