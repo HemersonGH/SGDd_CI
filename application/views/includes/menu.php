@@ -34,7 +34,7 @@
           <a class="nav-link active" href="<?= base_url(); ?>">Tela Inicial <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>usuario">Usuários</a>
+          <a class="nav-link" href="<?= base_url(); ?>usuario"> Usuários </a>
         </li>
       </ul>
     </nav>

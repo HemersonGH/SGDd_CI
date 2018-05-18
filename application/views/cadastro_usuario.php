@@ -67,6 +67,7 @@
 
       <div style="text-align: right">
         <button type="reset" class="btn btn-default">Cancelar</button>
+        <!-- <button type="btn" class="btn btn-default" href="base_url/usuario" >Cancelar</button> -->
         <button type="submit" class="btn btn-success">Enviar</button>
       </div>
 

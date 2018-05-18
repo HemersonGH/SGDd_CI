@@ -21,8 +21,8 @@
         <th> Email </th>
         <th> Nível </th>
         <th> Status </th>
-        <th> </th>
-        <th> </th>
+        <th> Ações </th>
+        <!-- <th> </th> -->
       </tr>
       <?php foreach ($usuarios as $user) { ?>
         <tr>

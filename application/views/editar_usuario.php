@@ -50,7 +50,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="password" class="form-control" id="password" name="password" value="<?= $usuario[0]->senha ?>" required>
+            <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" disabled>
           </div>
         </div>
         <div class="col-md-2">
@@ -66,7 +66,8 @@
       </div>
 
       <div style="text-align: right">
-        <button type="reset" class="btn btn-default">Cancelar</button>
+        <button type="reset" class="btn btn-default" >Cancelar</button>
+        <!-- <button type="btn" class="btn btn-default" href=" base_url(); usuario" >Cancelar</button> -->
         <button type="submit" class="btn btn-success">Enviar</button>
       </div>
 
