@@ -70,6 +70,23 @@ class Usuario extends CI_Controller {
 		}
 	}
 
+	public function atualizar($id=null)
+	{
+		$this->db->where('idUsuario', $id);
+		$data['usuario'] = $this->db->get('usuario')->result();
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('editar_usuario', $data);
+		$this->load->view('includes/html_footer');
+
+		// if ($this->db->upda('usuario')) {
+		// 	redirect('usuario/3');
+		// } else {
+		// 	redirect('usuario/4');
+		// }
+	}
+
 	public function excluir($id=null)
 	{
 		$this->db->where('idUsuario', $id);
