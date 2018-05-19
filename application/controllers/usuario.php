@@ -116,6 +116,7 @@ class Usuario extends CI_Controller {
 	public function excluir($id=null)
 	{
 		$this->db->where('idUsuario', $id);
+
 		if ($this->db->delete('usuario')) {
 			redirect('usuario/3');
 		} else {

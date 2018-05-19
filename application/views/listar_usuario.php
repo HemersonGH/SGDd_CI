@@ -24,16 +24,16 @@
         <th> Ações </th>
         <!-- <th> </th> -->
       </tr>
-      <?php foreach ($usuarios as $user) { ?>
+      <?php foreach ($usuarios as $usuario) { ?>
         <tr>
-          <td> <?= $user->idUsuario; ?> </td>
-          <td> <?= $user->nome; ?> </td>
-          <td> <?= $user->email; ?> </td>
-          <td> <?= $user->nivel == 1? 'Administrador':'Usuário'; ?> </td>
-          <td> <?= $user->status == 1? 'Ativo':'Inativo'; ?> </td>
+          <td> <?= $usuario->idUsuario; ?> </td>
+          <td> <?= $usuario->nome; ?> </td>
+          <td> <?= $usuario->email; ?> </td>
+          <td> <?= $usuario->nivel == 1? 'Administrador':'Usuário'; ?> </td>
+          <td> <?= $usuario->status == 1? 'Ativo':'Inativo'; ?> </td>
           <td>
-            <a href="<?= base_url('usuario/atualizar/'.$user->idUsuario); ?>" class="btn btn-primary btn-group mr-2"> Atualizar
-            <a href="<?= base_url('usuario/excluir/'.$user->idUsuario); ?>" class="btn btn-danger btn-group mr-0"
+            <a href="<?= base_url('usuario/atualizar/'.$usuario->idUsuario); ?>" class="btn btn-primary btn-group mr-2"> Atualizar
+            <a href="<?= base_url('usuario/excluir/'.$usuario->idUsuario); ?>" class="btn btn-danger btn-group mr-0"
                 onclick="return confirm('Deseja realmente remover esse usuário?'); "> Remover
           </td>
         </tr>
