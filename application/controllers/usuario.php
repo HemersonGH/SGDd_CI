@@ -27,18 +27,31 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
 
-		if ($indice == 1) {
+		switch ($indice) {
+			case '1':
 			$data['msg'] = 	"Usuário cadastrado com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
-		} else if ($indice == 2) {
+			break;
+			case '2':
 			$data['msg'] = 	"Não foi possível cadastrar o usuário";
 			$this->load->view('includes/msg_erro', $data);
-		} else if ($indice == 3) {
+			break;
+			case '3':
 			$data['msg'] = 	"Usuário excluído com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
-		} else if ($indice == 4) {
+			break;
+			case '4':
 			$data['msg'] = 	"Não foi possível exclui o usuário";
 			$this->load->view('includes/msg_erro', $data);
+			break;
+			case '5':
+			$data['msg'] = 	"Usuário atualizado com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+			break;
+			case '6':
+			$data['msg'] = 	"Não foi possível atualizar o usuário";
+			$this->load->view('includes/msg_erro', $data);
+			break;
 		}
 
 		$this->load->view('listar_usuario', $dados);
@@ -79,12 +92,25 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/menu');
 		$this->load->view('editar_usuario', $data);
 		$this->load->view('includes/html_footer');
+	}
 
-		// if ($this->db->upda('usuario')) {
-		// 	redirect('usuario/3');
-		// } else {
-		// 	redirect('usuario/4');
-		// }
+	public function salvar_atualizacao()
+	{
+		$id = $this->input->post('idUsuario');
+		$data['nome'] = $this->input->post('name');
+		$data['cpf'] = $this->input->post('cpf');
+		$data['email'] = $this->input->post('email');
+		$data['status'] = $this->input->post('status');
+		$data['nivel'] = $this->input->post('nivel');
+		$data['endereco'] = $this->input->post('endereco');
+
+		$this->db->where('idUsuario', $id);
+
+		if ($this->db->update('usuario', $data)) {
+			redirect('usuario/5');
+		} else {
+			redirect('usuario/6');
+		}
 	}
 
 	public function excluir($id=null)

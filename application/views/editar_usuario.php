@@ -10,7 +10,8 @@
   </div>
 
   <div class="col-md-12">
-    <form class="form-control" action="<?= base_url(); ?>usuario/cadastrar" method="post">
+    <form class="form-control" action="<?= base_url(); ?>usuario/salvar_atualizacao" method="post">
+      <input type="hidden" id="idUsuario" name="usuario" value="<?= $usuario[0]->idUsuario; ?>">
       <div class="form-group">
         <label for="name">Nome:</label>
         <input type="text" class="form-control" id="name" name="name" aria-describedby="namelHelp" value="<?= $usuario[0]->nome ?>" required>
@@ -31,7 +32,7 @@
         <div class="col-md-2">
           <div class="form-group">
             <label for="nivel">Nível:</label>
-            <select id="nivel" name="nivel" class="form-control" value="<?= $usuario[0]->nivel ?>" required>
+            <select id="nivel" name="nivel" class="form-control" required>
               <option value="0"> ----- </option>
               <option value="1" <?= $usuario[0]->nivel == 1? 'selected':''; ?> > Administrador </option>
               <option value="2" <?= $usuario[0]->nivel == 2? 'selected':''; ?> > Usuário </option>
@@ -56,10 +57,10 @@
         <div class="col-md-2">
           <div class="form-group">
             <label for="status">Status:</label>
-            <select id="status" name="status" class="form-control" value="<?= $usuario[0]->status ?>" required>
+            <select id="status" name="status" class="form-control" required>
               <option value="0"> ----- </option>
-              <option value="1" <?= $usuario[0]->nivel == 1? 'selected':''; ?>  > Ativo </option>
-              <option value="2" <?= $usuario[0]->nivel == 2? 'selected':''; ?>  > Inativo </option>
+              <option value="1" <?= $usuario[0]->status == 1? 'selected':''; ?>  > Ativo </option>
+              <option value="2" <?= $usuario[0]->status == 2? 'selected':''; ?>  > Inativo </option>
             </select>
           </div>
         </div>
@@ -68,7 +69,7 @@
       <div style="text-align: right">
         <button type="reset" class="btn btn-default" >Cancelar</button>
         <!-- <button type="btn" class="btn btn-default" href=" base_url(); usuario" >Cancelar</button> -->
-        <button type="submit" class="btn btn-success">Enviar</button>
+        <button type="submit" class="btn btn-success">Atualizar</button>
       </div>
 
     </form>

@@ -29,19 +29,19 @@
           <td> <?= $user->idUsuario; ?> </td>
           <td> <?= $user->nome; ?> </td>
           <td> <?= $user->email; ?> </td>
-          <td> <?= $user->nivel==1?'Administrador':'Usuário'; ?> </td>
-          <td> <?= $user->status==1?'Ativo':'Inativo'; ?> </td>
+          <td> <?= $user->nivel == 1? 'Administrador':'Usuário'; ?> </td>
+          <td> <?= $user->status == 1? 'Ativo':'Inativo'; ?> </td>
           <td>
             <a href="<?= base_url('usuario/atualizar/'.$user->idUsuario); ?>" class="btn btn-primary btn-group mr-2"> Atualizar
-              <a href="<?= base_url('usuario/excluir/'.$user->idUsuario); ?>" class="btn btn-danger btn-group mr-0"
+            <a href="<?= base_url('usuario/excluir/'.$user->idUsuario); ?>" class="btn btn-danger btn-group mr-0"
                 onclick="return confirm('Deseja realmente remover esse usuário?'); "> Remover
-              </td>
-            </tr>
-          <?php } ?>
-        </table>
-      </div>
-
-
-    </main>
+          </td>
+        </tr>
+      <?php } ?>
+    </table>
   </div>
+
+
+</main>
+</div>
 </div>
