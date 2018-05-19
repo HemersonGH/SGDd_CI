@@ -1,11 +1,11 @@
 
 <!-- Bootstrap core CSS -->
-<link href="<?php base_url(); ?>../../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="<?php base_url(); ?>../../assets/css/dashboard.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
 
-<script src="<?php base_url(); ?>../../assets/js/vendor/jquery.min.js "></script>
-<script src="<?php base_url(); ?>../../assets/maxcdn/maxcdn.min.js "></script>
+<script src="<?= base_url(); ?>assets/js/vendor/jquery.min.js "></script>
+<script src="<?= base_url(); ?>assets/maxcdn/maxcdn.min.js "></script>
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
@@ -53,7 +53,8 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="button" class="btn btn-default btn-block" value="Atualizar Senha" data-toggle="modal" data-target="#myModal">
+            <input type="button" class="btn btn-default btn-block" value="Atualizar Senha"
+            data-toggle="modal" data-target="#myModal">
           </div>
         </div>
         <div class="col-md-2">
@@ -69,8 +70,7 @@
       </div>
 
       <div style="text-align: right">
-        <button type="reset" class="btn btn-default" >Cancelar</button>
-        <!-- <button type="btn" class="btn btn-default" href=" base_url(); usuario" >Cancelar</button> -->
+        <a type="btn" class="btn btn-secondary" href="<?= base_url(); ?>usuario" >Cancelar</a>
         <button type="submit" class="btn btn-success">Atualizar</button>
       </div>
 
@@ -84,18 +84,62 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" role="dialog">Modal title</h4>
+    <form class="" action="<?= base_url(); ?>usuario/salvar_senha" method="post">
+      <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $usuario[0]->idUsuario; ?>">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4> Atualizar Senha </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="senha_antiga"> Senha Antiga: </label>
+              <input type="password" class="form-control" name="senha_antiga" id="senha_antiga">
+            </div>
+            <div class="col-md-12 form-group">
+              <label for="senha_nova"> Nova Senha: </label>
+              <input type="password" class="form-control" name="senha_nova" id="senha_nova" onkeyup="checkPassword()">
+            </div>
+            <div class="col-md-12 form-group">
+              <label for="senha_confirmar"> Confirmar Senha: </label>
+              <input type="password" class="form-control" name="senha_confirmar" id="senha_confirmar" onkeyup="checkPassword()">
+            </div>
+            <div class="col-md-12 form-group">
+              <div id="divcheck">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
+          <button type="submit" class="btn btn-primary" id="enviarSenha" disabled> Salvar </button>
+        </div>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
+
+<script>
+$(document).ready(function() {
+  $("#senha_nova").keyup(checkPasswordMatch);
+  $("#senha_confirmar").keyup(checkPasswordMatch);
+});
+function checkPassword() {
+  var password = $("#senha_nova").val();
+  var confirmPassword = $("#senha_confirmar").val();
+
+  if (password == '' || '' == confirmPassword) {
+    $("#divcheck").html("<span style='color:red'> Campo Senha vazio! </span>");
+    document.getElementById("enviarSenha").disabled = true;
+  } else if (password != confirmPassword) {
+    $("#divcheck").html("<span style='color:red'> Senhas não conferem! </span>");
+    document.getElementById("enviarSenha").disabled = true;
+  } else {
+    $("#divcheck").html("<span style='color:green'> Senhas conferem! </span>");
+    document.getElementById("enviarSenha").disabled = false;
+  }
+}
+</script>

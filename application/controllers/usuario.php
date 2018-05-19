@@ -33,7 +33,7 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '2':
-			$data['msg'] = 	"Não foi possível cadastrar o usuário";
+			$data['msg'] = 	"Não foi possível cadastrar o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 			case '3':
@@ -41,7 +41,7 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '4':
-			$data['msg'] = 	"Não foi possível exclui o usuário";
+			$data['msg'] = 	"Não foi possível exclui o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 			case '5':
@@ -49,7 +49,7 @@ class Usuario extends CI_Controller {
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '6':
-			$data['msg'] = 	"Não foi possível atualizar o usuário";
+			$data['msg'] = 	"Não foi possível atualizar o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 		}
@@ -83,13 +83,22 @@ class Usuario extends CI_Controller {
 		}
 	}
 
-	public function atualizar($id=null)
+	public function atualizar($id=null, $indice=null)
 	{
 		$this->db->where('idUsuario', $id);
 		$data['usuario'] = $this->db->get('usuario')->result();
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
+
+		if ($indice == 1) {
+			$data['msg'] = 	"Senha atualizada com sucesso.";
+			$this->load->view('includes/msg_sucesso', $data);
+		} else if ($indice == 2) {
+			$data['msg'] = 	"Não foi possível atualizar a senha do usuário.";
+			$this->load->view('includes/msg_erro', $data);
+		}
+
 		$this->load->view('editar_usuario', $data);
 		$this->load->view('includes/html_footer');
 	}
@@ -122,5 +131,27 @@ class Usuario extends CI_Controller {
 		} else {
 			redirect('usuario/4');
 		}
+	}
+
+	public function salvar_senha()
+	{
+		$id = $this->input->post('idUsuario');
+		$senha_antiga = md5($this->input->post('senha_antiga'));
+		$senha_nova = md5($this->input->post('senha_nova'));
+
+		$this->db->select('senha');
+		$this->db->where('idUsuario', $id);
+		$data['senha'] = $this->db->get('usuario')->result();
+		$dados['senha'] = $senha_nova;
+
+		if ($data['senha'][0]->senha == $senha_antiga) {
+			$this->db->where('idUsuario', $id);
+			$this->db->update('usuario', $dados);
+
+			redirect('usuario/atualizar/'.$id.'/1');
+		} else {
+			redirect('usuario/atualizar/'.$id.'/2');
+		}
+
 	}
 }

@@ -1,8 +1,8 @@
 
 <!-- Bootstrap core CSS -->
-<link href="<?php base_url(); ?>../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="<?php base_url(); ?>../assets/css/dashboard.css" rel="stylesheet">
+<link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
 
 <main class="row col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 main">
   <div class="col-md-12">
