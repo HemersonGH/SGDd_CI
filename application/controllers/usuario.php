@@ -19,9 +19,19 @@ class Usuario extends CI_Controller {
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
 
+	public function verificar_sessao()
+	{
+		if (!($this->session->userdata('logado'))) {
+			redirect('dashboard/login');
+		}
+	}
+
 	public function index($indice=null)
 	{
+		$this->verificar_sessao();
 		$this->db->select('*');
+
+		$this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
 		$dados['usuarios'] = $this->db->get('usuario')->result();
 
 		$this->load->view('includes/html_header');
@@ -60,14 +70,19 @@ class Usuario extends CI_Controller {
 
 	public function cadastro()
 	{
+		$this->verificar_sessao();
+
+		$dados['cidades'] = $this->db->get('cidade')->result();
+
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('cadastro_usuario');
+		$this->load->view('cadastro_usuario', $dados);
 		$this->load->view('includes/html_footer');
 	}
 
 	public function cadastrar()
 	{
+		$this->verificar_sessao();
 		$data['nome'] = $this->input->post('name');
 		$data['cpf'] = $this->input->post('cpf');
 		$data['email'] = $this->input->post('email');
@@ -75,6 +90,7 @@ class Usuario extends CI_Controller {
 		$data['status'] = $this->input->post('status');
 		$data['nivel'] = $this->input->post('nivel');
 		$data['endereco'] = $this->input->post('endereco');
+		$data['cidade_idCidade'] = $this->input->post('cidade');
 
 		if ($this->db->insert('usuario', $data)) {
 			redirect('usuario/1');
@@ -85,6 +101,10 @@ class Usuario extends CI_Controller {
 
 	public function atualizar($id=null, $indice=null)
 	{
+		$this->verificar_sessao();
+
+		$data['cidades'] = $this->db->get('cidade')->result();
+
 		$this->db->where('idUsuario', $id);
 		$data['usuario'] = $this->db->get('usuario')->result();
 
@@ -105,6 +125,7 @@ class Usuario extends CI_Controller {
 
 	public function salvar_atualizacao()
 	{
+		$this->verificar_sessao();
 		$id = $this->input->post('idUsuario');
 		$data['nome'] = $this->input->post('name');
 		$data['cpf'] = $this->input->post('cpf');
@@ -112,6 +133,7 @@ class Usuario extends CI_Controller {
 		$data['status'] = $this->input->post('status');
 		$data['nivel'] = $this->input->post('nivel');
 		$data['endereco'] = $this->input->post('endereco');
+		$data['cidade_idCidade'] = $this->input->post('cidade');
 
 		$this->db->where('idUsuario', $id);
 
@@ -124,6 +146,7 @@ class Usuario extends CI_Controller {
 
 	public function excluir($id=null)
 	{
+		$this->verificar_sessao();
 		$this->db->where('idUsuario', $id);
 
 		if ($this->db->delete('usuario')) {
@@ -135,6 +158,7 @@ class Usuario extends CI_Controller {
 
 	public function salvar_senha()
 	{
+		$this->verificar_sessao();
 		$id = $this->input->post('idUsuario');
 		$senha_antiga = md5($this->input->post('senha_antiga'));
 		$senha_nova = md5($this->input->post('senha_nova'));

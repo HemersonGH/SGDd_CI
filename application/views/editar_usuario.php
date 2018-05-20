@@ -67,8 +67,20 @@
             </select>
           </div>
         </div>
+        <div class="col-md-3">
+          <label for="status"> Cidades: </label>
+          <select class="form-control" id="cidade" name="cidade" required>
+            <option value="0"> ----- </option>
+            <?php foreach ($cidades as $cidade) :
+              if ($cidade->idCidade == $usuario[0]->cidade_idCidade) {
+            ?>
+              <option value=" <?= $cidade->idCidade ?> " selected> <?= $cidade->nome_cid; ?> </option>
+            <?php } else { ?>
+              <option value=" <?= $cidade->idCidade ?> "> <?= $cidade->nome_cid; ?> </option>
+            <?php } endforeach; ?>
+          </select>
+        </div>
       </div>
-
       <div style="text-align: right">
         <a type="btn" class="btn btn-secondary" href="<?= base_url(); ?>usuario" >Cancelar</a>
         <button type="submit" class="btn btn-success">Atualizar</button>
