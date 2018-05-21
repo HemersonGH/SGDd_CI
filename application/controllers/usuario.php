@@ -39,27 +39,27 @@ class Usuario extends CI_Controller {
 
 		switch ($indice) {
 			case '1':
-			$data['msg'] = 	"Usuário cadastrado com sucesso.";
+			$data['msg'] = "Usuário cadastrado com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '2':
-			$data['msg'] = 	"Não foi possível cadastrar o usuário.";
+			$data['msg'] = "Não foi possível cadastrar o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 			case '3':
-			$data['msg'] = 	"Usuário excluído com sucesso.";
+			$data['msg'] = "Usuário excluído com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '4':
-			$data['msg'] = 	"Não foi possível exclui o usuário.";
+			$data['msg'] = "Não foi possível exclui o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 			case '5':
-			$data['msg'] = 	"Usuário atualizado com sucesso.";
+			$data['msg'] = "Usuário atualizado com sucesso.";
 			$this->load->view('includes/msg_sucesso', $data);
 			break;
 			case '6':
-			$data['msg'] = 	"Não foi possível atualizar o usuário.";
+			$data['msg'] = "Não foi possível atualizar o usuário.";
 			$this->load->view('includes/msg_erro', $data);
 			break;
 		}
