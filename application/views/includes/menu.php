@@ -17,7 +17,7 @@
       <a class="nav-link" href="#">Perfil</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?= base_url(); ?>dashboard/logout"> Logout</a>
+      <a class="nav-link" style="cursor:pointer;" data-toggle="modal" data-target="#myModal"> Logout </a>
     </li>
   </ul>
   <form class="form-inline mt-2 mt-md-0">
@@ -27,7 +27,26 @@
 </div>
 </nav>
 
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4> Encerrar sessão </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja sair?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="cursor:pointer;" data-dismiss="modal"> Não </button>
+        <a type="button" class="btn btn-secondary" href="<?= base_url(); ?>dashboard/logout"> Sim </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
   <div class="row">

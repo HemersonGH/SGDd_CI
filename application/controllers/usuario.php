@@ -83,16 +83,9 @@ class Usuario extends CI_Controller {
 	public function cadastrar()
 	{
 		$this->verificar_sessao();
-		$data['nome'] = $this->input->post('name');
-		$data['cpf'] = $this->input->post('cpf');
-		$data['email'] = $this->input->post('email');
-		$data['senha'] = md5($this->input->post('password'));
-		$data['status'] = $this->input->post('status');
-		$data['nivel'] = $this->input->post('nivel');
-		$data['endereco'] = $this->input->post('endereco');
-		$data['cidade_idCidade'] = $this->input->post('cidade');
+		$this->load->model('usuario_model','usuario');
 
-		if ($this->db->insert('usuario', $data)) {
+		if ($this->usuario->cadastrar()) {
 			redirect('usuario/1');
 		} else {
 			redirect('usuario/2');
@@ -123,59 +116,41 @@ class Usuario extends CI_Controller {
 		$this->load->view('includes/html_footer');
 	}
 
-	public function salvar_atualizacao()
-	{
-		$this->verificar_sessao();
-		$id = $this->input->post('idUsuario');
-		$data['nome'] = $this->input->post('name');
-		$data['cpf'] = $this->input->post('cpf');
-		$data['email'] = $this->input->post('email');
-		$data['status'] = $this->input->post('status');
-		$data['nivel'] = $this->input->post('nivel');
-		$data['endereco'] = $this->input->post('endereco');
-		$data['cidade_idCidade'] = $this->input->post('cidade');
-
-		$this->db->where('idUsuario', $id);
-
-		if ($this->db->update('usuario', $data)) {
-			redirect('usuario/5');
-		} else {
-			redirect('usuario/6');
-		}
-	}
-
 	public function excluir($id=null)
 	{
 		$this->verificar_sessao();
-		$this->db->where('idUsuario', $id);
+		$this->load->model('usuario_model','usuario');
 
-		if ($this->db->delete('usuario')) {
+		if ($this->usuario->excluir($id)) {
 			redirect('usuario/3');
 		} else {
 			redirect('usuario/4');
 		}
 	}
 
+	public function salvar_atualizacao()
+	{
+		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
+		if ($this->usuario->salvar_atualizacao()) {
+			redirect('usuario/5');
+		} else {
+			redirect('usuario/6');
+		}
+	}
+
 	public function salvar_senha()
 	{
 		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
 		$id = $this->input->post('idUsuario');
-		$senha_antiga = md5($this->input->post('senha_antiga'));
-		$senha_nova = md5($this->input->post('senha_nova'));
 
-		$this->db->select('senha');
-		$this->db->where('idUsuario', $id);
-		$data['senha'] = $this->db->get('usuario')->result();
-		$dados['senha'] = $senha_nova;
-
-		if ($data['senha'][0]->senha == $senha_antiga) {
-			$this->db->where('idUsuario', $id);
-			$this->db->update('usuario', $dados);
-
+		if ($this->usuario->salvar_senha()) {
 			redirect('usuario/atualizar/'.$id.'/1');
 		} else {
 			redirect('usuario/atualizar/'.$id.'/2');
 		}
-
 	}
 }

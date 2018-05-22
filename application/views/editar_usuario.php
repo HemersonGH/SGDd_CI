@@ -73,23 +73,23 @@
             <option value="0"> ----- </option>
             <?php foreach ($cidades as $cidade) :
               if ($cidade->idCidade == $usuario[0]->cidade_idCidade) {
-            ?>
-              <option value=" <?= $cidade->idCidade ?> " selected> <?= $cidade->nome_cid; ?> </option>
-            <?php } else { ?>
-              <option value=" <?= $cidade->idCidade ?> "> <?= $cidade->nome_cid; ?> </option>
-            <?php } endforeach; ?>
-          </select>
+                ?>
+                <option value=" <?= $cidade->idCidade ?> " selected> <?= $cidade->nome_cid; ?> </option>
+              <?php } else { ?>
+                <option value=" <?= $cidade->idCidade ?> "> <?= $cidade->nome_cid; ?> </option>
+              <?php } endforeach; ?>
+            </select>
+          </div>
         </div>
-      </div>
-      <div style="text-align: right">
-        <a type="btn" class="btn btn-secondary" href="<?= base_url(); ?>usuario" >Cancelar</a>
-        <button type="submit" class="btn btn-success">Atualizar</button>
-      </div>
+        <div style="text-align: right">
+          <a type="btn" class="btn btn-secondary" href="<?= base_url(); ?>usuario" >Cancelar</a>
+          <button type="submit" class="btn btn-success">Atualizar</button>
+        </div>
 
-    </form>
-  </div>
+      </form>
+    </div>
 
-</main>
+  </main>
 </div>
 </div>
 
