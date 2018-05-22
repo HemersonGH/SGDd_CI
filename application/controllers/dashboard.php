@@ -63,6 +63,7 @@ class Dashboard extends CI_Controller {
 		} else {
 			redirect('dashboard/login');
 		}
+
 	}
 
 	public function logout()
