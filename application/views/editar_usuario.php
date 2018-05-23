@@ -47,7 +47,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email ?>" required>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $usuario[0]->email; ?>" required>
           </div>
         </div>
         <div class="col-md-4">
@@ -74,11 +74,17 @@
             <?php foreach ($cidades as $cidade) :
               if ($cidade->idCidade == $usuario[0]->cidade_idCidade) {
                 ?>
-                <option value=" <?= $cidade->idCidade ?> " selected> <?= $cidade->nome_cid; ?> </option>
+                <option value=" <?= $cidade->idCidade ?> " selected> <?= $cidade->nome_cid.'-'.$cidade->uf; ?> </option>
               <?php } else { ?>
-                <option value=" <?= $cidade->idCidade ?> "> <?= $cidade->nome_cid; ?> </option>
+                <option value=" <?= $cidade->idCidade ?> "> <?= $cidade->nome_cid.'-'.$cidade->uf; ?> </option>
               <?php } endforeach; ?>
             </select>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="data"> Data de Nascimento: </label>
+              <input type="date" class="form-control" id="data" name="data" value="<?= date('Y-m-d', strtotime($usuario[0]->dataNasc)); ?>" required>
+            </div>
           </div>
         </div>
         <div style="text-align: right">

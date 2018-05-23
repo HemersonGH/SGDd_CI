@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Maio-2018 às 06:16
+-- Generation Time: 23-Maio-2018 às 05:25
 -- Versão do servidor: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -30,18 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cidade` (
   `idCidade` int(11) NOT NULL,
-  `nome_cid` varchar(80) NOT NULL
+  `nome_cid` varchar(80) NOT NULL,
+  `uf` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cidade`
 --
 
-INSERT INTO `cidade` (`idCidade`, `nome_cid`) VALUES
-(1, 'Belo Horizonte'),
-(2, 'Campo Belo'),
-(3, 'Rio de Janeiro'),
-(4, 'Lavras');
+INSERT INTO `cidade` (`idCidade`, `nome_cid`, `uf`) VALUES
+(1, 'Belo Horizonte', 'MG'),
+(2, 'Campo Belo', 'MG'),
+(3, 'Rio de Janeiro', 'RJ'),
+(4, 'Lavras', 'MG');
 
 -- --------------------------------------------------------
 
@@ -54,21 +55,22 @@ CREATE TABLE `usuario` (
   `nome` varchar(80) NOT NULL,
   `cpf` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `senha` varchar(50) NOT NULL,
+  `senha` varchar(80) NOT NULL,
   `status` int(11) NOT NULL,
   `nivel` int(11) NOT NULL,
   `endereco` varchar(50) NOT NULL,
-  `cidade_idCidade` int(11) DEFAULT NULL
+  `cidade_idCidade` int(11) DEFAULT NULL,
+  `dataNasc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `email`, `senha`, `status`, `nivel`, `endereco`, `cidade_idCidade`) VALUES
-(22, 'teste', 'teste', 'teste@teste', 'e959088c6049f1104c84c9bde5560a13', 1, 2, 'teste', 3),
-(27, 'lavras@lavras', 'lavras@lavras', 'lavras@lavras', 'd6e7f172d4e125a5d701046764f627b3', 1, 1, 'lavras@lavras', 4),
-(31, '1', '1', '123@123', 'c4ca4238a0b923820dcc509a6f75849b', 1, 1, '1', 1);
+INSERT INTO `usuario` (`idUsuario`, `nome`, `cpf`, `email`, `senha`, `status`, `nivel`, `endereco`, `cidade_idCidade`, `dataNasc`) VALUES
+(22, 'teste', 'teste', 'teste@teste', 'e358efa489f58062f10dd7316b65649e', 1, 2, 'teste', 1, '2018-05-23 02:54:02'),
+(27, 'lavras@lavras', 'lavras@lavras', 'lavras@lavras', 'd6e7f172d4e125a5d701046764f627b3', 1, 1, 'lavras@lavras', 3, '2018-05-23 02:54:02'),
+(28, 'deu certo sim mi', '43242423432423', 'demo@gmail.com', 'e358efa489f58062f10dd7316b65649e', 1, 1, '4', 1, '2018-04-29 03:00:00');
 
 --
 -- Indexes for dumped tables
@@ -101,7 +103,7 @@ ALTER TABLE `cidade`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

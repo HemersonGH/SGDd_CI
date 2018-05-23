@@ -29,10 +29,9 @@ class Usuario extends CI_Controller {
 	public function index($indice=null)
 	{
 		$this->verificar_sessao();
-		$this->db->select('*');
+		$this->load->model('usuario_model','usuario');
 
-		$this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
-		$dados['usuarios'] = $this->db->get('usuario')->result();
+		$dados['usuarios'] = $this->usuario->get_Usuarios();
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -71,8 +70,9 @@ class Usuario extends CI_Controller {
 	public function cadastro()
 	{
 		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
 
-		$dados['cidades'] = $this->db->get('cidade')->result();
+		$dados['cidades'] = $this->usuario->get_Cidades();
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
@@ -95,11 +95,10 @@ class Usuario extends CI_Controller {
 	public function atualizar($id=null, $indice=null)
 	{
 		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
 
-		$data['cidades'] = $this->db->get('cidade')->result();
-
-		$this->db->where('idUsuario', $id);
-		$data['usuario'] = $this->db->get('usuario')->result();
+		$data['cidades'] = $this->usuario->get_Cidades();
+		$data['usuario'] = $this->usuario->get_Usuario($id);
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');

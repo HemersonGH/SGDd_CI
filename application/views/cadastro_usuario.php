@@ -68,15 +68,20 @@
           <select class="form-control" id="cidade" name="cidade" required>
             <option value="0"> ----- </option>
             <?php foreach ($cidades as $cidade): ?>
-              <option value="<?= $cidade->idCidade?> "> <?= $cidade ->nome_cid; ?> </option>
+              <option value="<?= $cidade->idCidade?> "> <?= $cidade->nome_cid.'-'.$cidade->uf; ?> </option>
             <?php endforeach; ?>
           </select>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="data"> Data de Nascimento: </label>
+            <input type="date" class="form-control" id="data" name="data" required>
+          </div>
         </div>
       </div>
 
       <div style="text-align: right">
-        <button type="reset" class="btn btn-default">Cancelar</button>
-        <!-- <button type="btn" class="btn btn-default" href="base_url/usuario" >Cancelar</button> -->
+        <a type="btn" class="btn btn-secondary" href="<?= base_url(); ?>usuario">Cancelar</a>
         <button type="submit" class="btn btn-success">Enviar</button>
       </div>
 

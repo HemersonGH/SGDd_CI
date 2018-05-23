@@ -17,8 +17,23 @@ class Usuario_model extends CI_Model
     $data['nivel'] = $this->input->post('nivel');
     $data['endereco'] = $this->input->post('endereco');
     $data['cidade_idCidade'] = $this->input->post('cidade');
+    $data['dataNasc'] = $this->input->post('data');
 
     return $this->db->insert('usuario', $data);
+  }
+
+  public function get_Usuario($id=null)
+  {
+    $this->db->where('idUsuario', $id);
+		return $this->db->get('usuario')->result();
+  }
+
+  public function get_Usuarios()
+  {
+    $this->db->select('*');
+    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
+
+    return $this->db->get('usuario')->result();
   }
 
   public function excluir($id=null)
@@ -39,6 +54,7 @@ class Usuario_model extends CI_Model
     $data['nivel'] = $this->input->post('nivel');
     $data['endereco'] = $this->input->post('endereco');
     $data['cidade_idCidade'] = $this->input->post('cidade');
+    $data['dataNasc'] = $this->input->post('data');
 
     $this->db->where('idUsuario', $id);
 
@@ -65,6 +81,11 @@ class Usuario_model extends CI_Model
     } else {
       return false;
     }
+  }
+
+  public function get_Cidades()
+  {
+    return $this->db->get('cidade')->result();
   }
 
 }

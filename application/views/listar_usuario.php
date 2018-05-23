@@ -30,7 +30,7 @@
           <td> <?= $usuario->idUsuario; ?> </td>
           <td> <?= $usuario->nome; ?> </td>
           <td> <?= $usuario->email; ?> </td>
-          <td> <?= $usuario->nome_cid; ?> </td>
+          <td> <?= $usuario->nome_cid.'-'.$usuario->uf; ?> </td>
           <td> <?= $usuario->nivel == 1? 'Administrador':'Usuário'; ?> </td>
           <td> <?= $usuario->status == 1? 'Ativo':'Inativo'; ?> </td>
           <td>
