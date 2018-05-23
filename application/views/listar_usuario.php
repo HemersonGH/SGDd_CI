@@ -13,6 +13,19 @@
     <a class="btn btn-primary btn-block" href="<?= base_url(); ?>usuario/cadastro"> Novo Usuário</a>
   </div>
 
+  <div class="col-md-12" style="padding-bottom: 10px">
+    <form action="<?= base_url(); ?>usuario/pesquisar" method="post">
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" class="form-control" id="pesquisar" name="pesquisar" placeholder="Pesquisar...">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-success btn-block">Pesquisar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
   <div class="col-md-12">
     <table class="table table-striped">
       <tr>
@@ -35,14 +48,14 @@
           <td> <?= $usuario->status == 1? 'Ativo':'Inativo'; ?> </td>
           <td>
             <a href="<?= base_url('usuario/atualizar/'.$usuario->idUsuario); ?>" class="btn btn-primary btn-group mr-2"> Atualizar
-            <a href="<?= base_url('usuario/excluir/'.$usuario->idUsuario); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover esse usuário?'); "> Remover
-          </td>
-        </tr>
-      <?php } ?>
-    </table>
+              <a href="<?= base_url('usuario/excluir/'.$usuario->idUsuario); ?>" class="btn btn-danger btn-group mr-0" onclick="return confirm('Deseja realmente remover esse usuário?'); "> Remover
+              </td>
+            </tr>
+          <?php } ?>
+        </table>
+      </div>
+
+
+    </main>
   </div>
-
-
-</main>
-</div>
 </div>

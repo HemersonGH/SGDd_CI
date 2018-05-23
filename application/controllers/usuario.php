@@ -83,9 +83,20 @@ class Usuario extends CI_Controller {
 	public function cadastrar()
 	{
 		$this->verificar_sessao();
+
+		$data['nome'] = $this->input->post('name');
+    $data['cpf'] = $this->input->post('cpf');
+    $data['email'] = $this->input->post('email');
+    $data['senha'] = md5($this->input->post('password'));
+    $data['status'] = $this->input->post('status');
+    $data['nivel'] = $this->input->post('nivel');
+    $data['endereco'] = $this->input->post('endereco');
+    $data['cidade_idCidade'] = $this->input->post('cidade');
+    $data['dataNasc'] = $this->input->post('data');
+
 		$this->load->model('usuario_model','usuario');
 
-		if ($this->usuario->cadastrar()) {
+		if ($this->usuario->cadastrar($data)) {
 			redirect('usuario/1');
 		} else {
 			redirect('usuario/2');
@@ -130,9 +141,21 @@ class Usuario extends CI_Controller {
 	public function salvar_atualizacao()
 	{
 		$this->verificar_sessao();
+
+		$id = $this->input->post('idUsuario');
+
+    $data['nome'] = $this->input->post('name');
+    $data['cpf'] = $this->input->post('cpf');
+    $data['email'] = $this->input->post('email');
+    $data['status'] = $this->input->post('status');
+    $data['nivel'] = $this->input->post('nivel');
+    $data['endereco'] = $this->input->post('endereco');
+    $data['cidade_idCidade'] = $this->input->post('cidade');
+    $data['dataNasc'] = $this->input->post('data');
+
 		$this->load->model('usuario_model','usuario');
 
-		if ($this->usuario->salvar_atualizacao()) {
+		if ($this->usuario->salvar_atualizacao($id, $data)) {
 			redirect('usuario/5');
 		} else {
 			redirect('usuario/6');
@@ -142,14 +165,70 @@ class Usuario extends CI_Controller {
 	public function salvar_senha()
 	{
 		$this->verificar_sessao();
+
+		$id = $this->input->post('idUsuario');
+
+    $senha_antiga = md5($this->input->post('senha_antiga'));
+    $senha_nova = md5($this->input->post('senha_nova'));
+
 		$this->load->model('usuario_model','usuario');
 
 		$id = $this->input->post('idUsuario');
 
-		if ($this->usuario->salvar_senha()) {
+		if ($this->usuario->salvar_senha($id, $senha_antiga, $senha_nova)) {
 			redirect('usuario/atualizar/'.$id.'/1');
 		} else {
 			redirect('usuario/atualizar/'.$id.'/2');
 		}
+	}
+
+	public function pesquisar()
+	{
+		$this->verificar_sessao();
+
+		$termo = $this->input->post('pesquisar');
+
+		$this->load->model('usuario_model','usuario');
+
+		$dados['usuarios'] = $this->usuario->get_Usuarios_Like($termo);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('listar_usuario', $dados);
+		$this->load->view('includes/html_footer');
+	}
+
+	public function pag($value=null)
+	{
+		$this->verificar_sessao();
+		$this->load->model('usuario_model','usuario');
+
+		if ($value == null) {
+			$value = 1;
+		}
+
+		$reg_p_pag = 10;
+
+		if ($value <= $reg_p_pag) {
+			$data['btnA'] = 'disabled';
+		} else {
+			$data['btnA'] = '';
+		}
+
+		$u = $this->usuario->getQtdUsuarios();
+
+		if (($u[0]->total - $value) < $reg_p_pag) {
+			$data['btnP'] = 'disabled';
+		} else {
+			$data['btnP'] = '';
+		}
+
+		$dados['usuarios'] = $this->usuario->get_Usuarios_Pag($value, $reg_p_pag);
+
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('listar_usuario', $dados);
+		$this->load->view('includes/html_footer');
+
 	}
 }

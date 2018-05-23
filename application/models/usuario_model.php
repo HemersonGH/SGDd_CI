@@ -7,31 +7,30 @@ class Usuario_model extends CI_Model
     parent::__construct();
   }
 
-  public function cadastrar()
+  public function cadastrar($data)
   {
-    $data['nome'] = $this->input->post('name');
-    $data['cpf'] = $this->input->post('cpf');
-    $data['email'] = $this->input->post('email');
-    $data['senha'] = md5($this->input->post('password'));
-    $data['status'] = $this->input->post('status');
-    $data['nivel'] = $this->input->post('nivel');
-    $data['endereco'] = $this->input->post('endereco');
-    $data['cidade_idCidade'] = $this->input->post('cidade');
-    $data['dataNasc'] = $this->input->post('data');
-
     return $this->db->insert('usuario', $data);
   }
 
   public function get_Usuario($id=null)
   {
     $this->db->where('idUsuario', $id);
-		return $this->db->get('usuario')->result();
+    return $this->db->get('usuario')->result();
   }
 
   public function get_Usuarios()
   {
     $this->db->select('*');
     $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
+
+    return $this->db->get('usuario')->result();
+  }
+
+  public function get_Usuarios_Like($termo)
+  {
+    $this->db->select('*');
+    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
+    $this->db->like('nome', $termo);
 
     return $this->db->get('usuario')->result();
   }
@@ -43,31 +42,15 @@ class Usuario_model extends CI_Model
     return $this->db->delete('usuario');
   }
 
-  public function salvar_atualizacao()
+  public function salvar_atualizacao($id, $data)
   {
-    $id = $this->input->post('idUsuario');
-
-    $data['nome'] = $this->input->post('name');
-    $data['cpf'] = $this->input->post('cpf');
-    $data['email'] = $this->input->post('email');
-    $data['status'] = $this->input->post('status');
-    $data['nivel'] = $this->input->post('nivel');
-    $data['endereco'] = $this->input->post('endereco');
-    $data['cidade_idCidade'] = $this->input->post('cidade');
-    $data['dataNasc'] = $this->input->post('data');
-
     $this->db->where('idUsuario', $id);
 
     return $this->db->update('usuario', $data);
   }
 
-  public function salvar_senha()
+  public function salvar_senha($id, $senha_antiga, $senha_nova)
   {
-    $id = $this->input->post('idUsuario');
-
-    $senha_antiga = md5($this->input->post('senha_antiga'));
-    $senha_nova = md5($this->input->post('senha_nova'));
-
     $this->db->select('senha');
     $this->db->where('idUsuario', $id);
     $data['senha'] = $this->db->get('usuario')->result();
@@ -86,6 +69,22 @@ class Usuario_model extends CI_Model
   public function get_Cidades()
   {
     return $this->db->get('cidade')->result();
+  }
+
+  public function getQtdUsuarios()
+  {
+    $this->db->select('count(*) as total');
+
+		return $this->db->get('usuario')->result();
+  }
+
+  public function get_Usuarios_Pag($value, $reg_p_pag)
+  {
+    $this->db->select('*');
+    $this->db->join('cidade', 'cidade_idCidade = idCidade', 'inner');
+    $this->db->limit($reg_p_pag, $value);
+
+    return $this->db->get('usuario')->result();
   }
 
 }
