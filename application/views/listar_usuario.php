@@ -55,6 +55,17 @@
         </table>
       </div>
 
+      <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"> Anterior </a>
+
+      <?php
+        $n_pag = 1;
+        for($i = 1; $i <= $qtd_botoes; $i++) { ?>
+          <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"><?= $i?></a>
+      <?php
+        $n_pag += $reg_p_pag;
+      }?>
+
+      <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"> Próximo </a>
 
     </main>
   </div>

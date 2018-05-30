@@ -207,7 +207,7 @@ class Usuario extends CI_Controller {
 			$value = 1;
 		}
 
-		$reg_p_pag = 10;
+		$reg_p_pag = 2;
 
 		if ($value <= $reg_p_pag) {
 			$data['btnA'] = 'disabled';
@@ -223,11 +223,24 @@ class Usuario extends CI_Controller {
 			$data['btnP'] = '';
 		}
 
-		$dados['usuarios'] = $this->usuario->get_Usuarios_Pag($value, $reg_p_pag);
+		$data['usuarios'] = $this->usuario->get_Usuarios_Pag($value, $reg_p_pag);
+
+		$data['value'] = $value;
+		$data['reg_p_pag'] = $reg_p_pag;
+		$data['qtd_reg'] = $u[0]->total;
+
+		$v_inteiro = (int) $u[0]->total/$reg_p_pag;
+		$v_resto = $u[0]->total/$reg_p_pag;
+
+		if ($v_resto > 0) {
+			$v_inteiro += 1;
+		}
+
+		$data['qtd_botoes'] = $v_inteiro;
 
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('listar_usuario', $dados);
+		$this->load->view('listar_usuario', $data);
 		$this->load->view('includes/html_footer');
 
 	}
