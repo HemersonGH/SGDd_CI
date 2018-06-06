@@ -207,10 +207,10 @@ class Usuario extends CI_Controller {
 			$value = 1;
 		}
 
-		$reg_p_pag = 2;
+		$reg_p_pag = 5;
 
 		if ($value <= $reg_p_pag) {
-			$data['btnA'] = 'disabled';
+			$data['btnA'] = 'pointer-events: none; color: silver';
 		} else {
 			$data['btnA'] = '';
 		}
@@ -218,7 +218,7 @@ class Usuario extends CI_Controller {
 		$u = $this->usuario->getQtdUsuarios();
 
 		if (($u[0]->total - $value) < $reg_p_pag) {
-			$data['btnP'] = 'disabled';
+			$data['btnP'] = 'pointer-events: none; color: silver';
 		} else {
 			$data['btnP'] = '';
 		}
@@ -229,8 +229,8 @@ class Usuario extends CI_Controller {
 		$data['reg_p_pag'] = $reg_p_pag;
 		$data['qtd_reg'] = $u[0]->total;
 
-		$v_inteiro = (int) $u[0]->total/$reg_p_pag;
-		$v_resto = $u[0]->total/$reg_p_pag;
+		$v_inteiro = (int)($u[0]->total/$reg_p_pag);
+		$v_resto = $u[0]->total%$reg_p_pag;
 
 		if ($v_resto > 0) {
 			$v_inteiro += 1;

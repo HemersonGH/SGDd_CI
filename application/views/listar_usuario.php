@@ -54,19 +54,35 @@
           <?php } ?>
         </table>
       </div>
+      <div class="col-md-12">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"> <!-- active -->
+              <a class="page-link" href="<?= base_url('usuario/pag/'.((int)$value-$reg_p_pag)); ?>" aria-label="Anterior" style="<?= $btnA; ?>">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
 
-      <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"> Anterior </a>
+            <?php
+              $n_pag = 1;
+              for($i = 1; $i <= $qtd_botoes; $i++) { ?>
+                <li class="page-item">
+                  <a class="page-link" href="<?= base_url('usuario/pag/'.$n_pag); ?>"> <?= $i; ?> </a>
+                </li>
+            <?php
+              $n_pag += $reg_p_pag;
+            }?>
 
-      <?php
-        $n_pag = 1;
-        for($i = 1; $i <= $qtd_botoes; $i++) { ?>
-          <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"><?= $i?></a>
-      <?php
-        $n_pag += $reg_p_pag;
-      }?>
-
-      <a href="<?= base_url('usuario/pag/'.$n_pag); ?>"> Próximo </a>
-
+            <li class="page-item">
+              <a class="page-link" href="<?= base_url('usuario/pag/'.((int)$value+$reg_p_pag)); ?>" aria-label="Próximo" style="<?= $btnP; ?>">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </main>
   </div>
 </div>
